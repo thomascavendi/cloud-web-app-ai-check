@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+html {
+  --scrollbarBG: #CFD8DC;
+  --off-white: #adb2b5;
+  --thumbBG: #90A4AE;
+
+  --background-color: #eee;
+  --popup-background: #ddd;
+  --popup-header: #ccc;
+  --primary-color: #3f79ad;
+  --secondary-color: #71caf2;
+  --tertiary-color: #b4e3f9;
+  --primary-color-trans: #3f79ad33;
+  --secondary-color-trans: #71caf233;
+  --text-color: #000;
+  --text-hover: #222;
+
+  --box-gradient: linear-gradient(#71caf220, #3f79ad33);
+  --box-radial-gradient: radial-gradient(#3f79ad33, transparent 150%);
+
+  --status-red: linear-gradient(#fd4444aa, #c92222);
+  --status-green: linear-gradient(#3bc322aa, #3c891c);
+  --warning-red: var(--status-red);
+
+  --button-color: #fafafa;
+  --button-hover: #e4e4e4;
+
+  scroll-behavior: smooth;
+  display: none;
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --background-color: #000;
+    --popup-background: #222;
+    --popup-header: #333;
+    --box-gradient: linear-gradient(#71caf220, #3f79ad33);
+    --box-radial-gradient: radial-gradient(#71caf220, transparent 150%);
+    --status-red: linear-gradient(#f56565aa, #c92222);
+    --status-green: linear-gradient(#95ee85aa, #3c891c);
+    --text-color: #fff;
+    --text-hover: #eee;
+    --button-color: #111;
+    --button-hover: #1a1a1a;
+  }
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: 'Lato', sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+*::-webkit-scrollbar {
+  width: 11px;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
