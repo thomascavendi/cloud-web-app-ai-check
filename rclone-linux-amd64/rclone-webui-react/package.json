@@ -64,6 +64,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-private-property-in-object": "^7.25.9",
     "check-prop-types": "^1.1.2",
     "coveralls": "^3.1.0",
