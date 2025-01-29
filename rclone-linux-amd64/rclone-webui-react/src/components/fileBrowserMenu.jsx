@@ -3,8 +3,6 @@ import { Checkbox, Cross, PopupContainer, PopupTitle } from '../styled'
 import API from '../utils/API'
 import FileBrowser from './fileBrowser'
 import { BrowserSettingButton, FileBrowserRemotes, FileBrowsersContainer, FileBrowserSettings, FileBrowserWrapper, FileSettingsPopup, FileSettingsHeader, FileColumnSettingsContainer, RemoteButton } from './fileBrowser.styled'
-import assert from 'assert'
-import path from 'path'
 import FileMenu from './fileMenu'
 
 import BrowserSingle from '../assets/icons/browserSingle.svg'
@@ -107,7 +105,6 @@ class FileBrowserMenu extends Component {
    */
   getFiles = (brIndex, newPath) => {
     return new Promise((resolve, reject) => {
-      assert(brIndex === 0 || brIndex === 1, {brIndex})
 
       let { loading } = this.state
       loading[brIndex] = true
@@ -163,9 +160,11 @@ class FileBrowserMenu extends Component {
     let clickedFile = this.state.menuInfo.file
 
     const fs = this.state.browserFs[brIndex] + ":",
-          remote = path.join(this.state.currentPath[brIndex], clickedFile.Name || newFile),
+          //remote = path.join(this.state.currentPath[brIndex], clickedFile.Name || newFile),
+          remote = "",
           dstFs = this.state.browserFs[brIndex === 0 ? 1 : 0] + ":",
-          dstRemote = path.join(this.state.currentPath[brIndex === 0 ? 1 : 0], newFile || clickedFile.Name)
+          //dstRemote = path.join(this.state.currentPath[brIndex === 0 ? 1 : 0], newFile || clickedFile.Name)
+          dstRemote = ""
 
     switch(action) {
       case "copy":
@@ -208,7 +207,9 @@ class FileBrowserMenu extends Component {
             url: "/sync/move",
             data: {
               srcFs: fs + remote,
-              dstFs: fs + path.join(this.state.currentPath[brIndex], newFile)
+              //dstFs: fs + path.join(this.state.currentPath[brIndex], newFile)
+              dstFs: ""
+
             }
           })
           .then(() => {
@@ -234,7 +235,8 @@ class FileBrowserMenu extends Component {
           data: { srcFs: fs,
             srcRemote: remote,
             dstFs: fs,
-            dstRemote: path.join(this.state.currentPath[brIndex], newFile)
+            //dstRemote: path.join(this.state.currentPath[brIndex], newFile)
+            dstRemote: ""
           }
         })
         .then(() => {
@@ -265,7 +267,7 @@ class FileBrowserMenu extends Component {
         })
         .catch(() => {})
         .finally(this.closeMenu)
-      default: assert(false);
+      default: return false;
     }
   }
 
@@ -310,13 +312,6 @@ class FileBrowserMenu extends Component {
   openMenu = (brIndex, e, isFile) => {
     e.preventDefault()
     e.stopPropagation()
-
-    assert(
-      typeof e.pageX === "number"
-      && typeof e.pageY === "number"
-      && typeof e.target.innerHTML === "string"
-      && e.target.innerHTML.length > 0
-    )
 
     let file = {}
     if (isFile) file = this.state.files[brIndex].filter(v => v.Name === e.target.innerHTML)[0]
@@ -428,7 +423,8 @@ class FileBrowserMenu extends Component {
     const data = files.map((files, i) => ({
       files,
       setActive: () => this.setActiveBrowser(i),
-      updateFiles: path => this.getFiles(i, path),
+      //updateFiles: path => this.getFiles(i, path),
+      updateFiles: "",
       currentPath: currentPath[i],
       loading: loading[i],
       shownColumns: shownColumns,

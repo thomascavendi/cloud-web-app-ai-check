@@ -1,6 +1,5 @@
 import React from "react"
 import { Component, Fragment } from 'react'
-import path from 'path'
 import styled from 'styled-components'
 import { Label } from './fileBrowser.styled.js'
 import { Input } from '../styled'
@@ -274,7 +273,8 @@ class FileBrowser extends Component {
   renderImage = (type, filename) => {
     if (type === "inode/directory") return <img src={Folder} alt="folder" width="20px" height="20px" />
 
-    const ext = path.extname(filename).toLowerCase().substring(1)
+    //const ext = path.extname(filename).toLowerCase().substring(1)
+    const ext = "old"
 
     switch (ext) {
       case "aac": return <img src={AAC} alt="aac" width="20px" height="20px" />;
@@ -310,7 +310,8 @@ class FileBrowser extends Component {
   updatePath = name => {
     if (this.isMenuOpen()) return;
 
-    const newPath = path.join(this.props.currentPath, name)
+    //const newPath = path.join(this.props.currentPath, name)
+    const newPath = ""
 
     this.props.updateFiles(newPath)
     this.setState({filter: ""})
@@ -421,7 +422,8 @@ class FileBrowser extends Component {
 
   // render the path the user is currently at
   renderPath = () => 
-    path.join(...this.props.currentPath.split("/"))
+    //path.join(...this.props.currentPath.split("/"))
+    ""
     .split("/")
     .map((v, i) =>
       <SpanPathDirectory key={"path_"+v} onClick={() => this.goToPath(i)} style={{ cursor: "pointer" }}> /{v} </SpanPathDirectory>
